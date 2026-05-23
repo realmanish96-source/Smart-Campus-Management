@@ -2,24 +2,25 @@ import tkinter as tk
 from tkinter import messagebox
 import os
 
+# --- MODERN COLOR PALETTE ---
+COLOR_BG = "#f4f7f6"
+COLOR_HEADER = "#2c3e50"
+COLOR_CARD = "#ffffff"
+COLOR_ACCENT = "#3498db"
+COLOR_TEXT = "#34495e"
+
 def submit_complaint(text_area):
     complaint_text = text_area.get("1.0", tk.END).strip()
-    
     if complaint_text:
-        # Show success popup
-        messagebox.showinfo("Success", "Complaint Submitted Successfully! Our team will review it.")
-        # Clear the text area
+        messagebox.showinfo("Success", "Complaint Submitted Successfully!")
         text_area.delete("1.0", tk.END)
     else:
-        # Show warning if text area is empty
         messagebox.showwarning("Empty", "Please describe your complaint before submitting.")
 
 def show_complaints():
-    # Create a new top-level window
     complaints_window = tk.Toplevel()
-    complaints_window.title("Complaint Submission")
+    complaints_window.title("SCMP - Complaint Box")
     
-    # CROSS-PLATFORM FULL SCREEN FIX
     if os.name == 'nt':
         complaints_window.state('zoomed')
     else:
@@ -30,29 +31,34 @@ def show_complaints():
             height = complaints_window.winfo_screenheight()
             complaints_window.geometry(f"{width}x{height}+0+0")
             
-    complaints_window.configure(bg="white")
+    complaints_window.configure(bg=COLOR_BG)
     
-    tk.Label(complaints_window, text="Lodge a Complaint", font=("Arial", 28, "bold"), bg="white", fg="blue").pack(pady=50)
+    # --- HEADER ---
+    header = tk.Frame(complaints_window, bg=COLOR_HEADER, height=100)
+    header.pack(side=tk.TOP, fill=tk.X)
+    tk.Label(header, text="Support & Complaint Box", font=("Arial", 28, "bold"), bg=COLOR_HEADER, fg="white").pack(pady=25)
     
-    # Centered container
-    content_frame = tk.Frame(complaints_window, bg="white")
-    content_frame.pack(pady=20)
+    # --- CONTENT CARD ---
+    card = tk.Frame(complaints_window, bg=COLOR_CARD, bd=0, highlightthickness=1, highlightbackground="#ddd")
+    card.pack(pady=50, padx=100, fill=tk.BOTH, expand=True)
     
-    tk.Label(content_frame, text="Please provide detailed information about your issue:", font=("Arial", 14), bg="white").pack(anchor="w", pady=10)
+    tk.Label(card, text="How can we help you?", font=("Arial", 22, "bold"), bg=COLOR_CARD, fg=COLOR_HEADER).pack(pady=(40, 10))
+    tk.Label(card, text="Please provide detailed information about your concern.", font=("Arial", 12), bg=COLOR_CARD, fg="gray").pack(pady=(0, 20))
     
-    # Larger Text area for full screen
-    complaint_box = tk.Text(content_frame, font=("Arial", 14), width=80, height=15, bd=2, relief="solid")
-    complaint_box.pack(pady=10)
+    # Text Area - INCREASED SIZE
+    complaint_box = tk.Text(card, font=("Arial", 16), width=70, height=10, bd=1, relief="solid", bg="#fcfcfc")
+    complaint_box.pack(pady=20, padx=50)
     
     # Buttons Frame
-    btn_frame = tk.Frame(content_frame, bg="white")
+    btn_frame = tk.Frame(card, bg=COLOR_CARD)
     btn_frame.pack(pady=20)
     
-    # Submit Button
-    submit_btn = tk.Button(btn_frame, text="Submit Complaint", font=("Arial", 14, "bold"), 
-                           bg="blue", fg="white", width=25, height=2, command=lambda: submit_complaint(complaint_box))
+    # Submit Button - INCREASED SIZE
+    submit_btn = tk.Button(btn_frame, text="SUBMIT COMPLAINT", font=("Arial", 14, "bold"), 
+                           bg=COLOR_ACCENT, fg="white", width=25, height=2, relief="flat", 
+                           command=lambda: submit_complaint(complaint_box))
     submit_btn.pack(side=tk.LEFT, padx=20)
     
-    # Back Button
-    tk.Button(btn_frame, text="Back to Dashboard", font=("Arial", 14, "bold"), bg="gray", fg="white", 
-              width=25, height=2, command=complaints_window.destroy).pack(side=tk.LEFT, padx=20)
+    # --- BACK BUTTON ---
+    tk.Button(complaints_window, text="CLOSE & GO BACK", font=("Arial", 12, "bold"), bg=COLOR_HEADER, fg="white", 
+              padx=30, pady=10, relief="flat", command=complaints_window.destroy).pack(side=tk.BOTTOM, pady=50)
