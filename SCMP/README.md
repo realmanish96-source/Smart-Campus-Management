@@ -37,5 +37,5 @@ SCMP/
    ```
 
 ## User Credenentials
-username: manish123
+username: manish123 \n
 password: 050906
