@@ -36,6 +36,6 @@ SCMP/
    python main.py
    ```
 
-## User Credentials
-- **Username**: student
-- **Password**: 1234
+## User Credenentials
+username: manish123
+password: 050906
