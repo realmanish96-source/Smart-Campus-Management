@@ -25,24 +25,24 @@ def show_attendance():
     table_frame = tk.Frame(attendance_window, bg="white")
     table_frame.pack(pady=20)
     
-    # UPDATED SUBJECTS AND PLACEHOLDER ATTENDANCE
-    subjects = [
-        "Python",
-        "IEE",
-        "Maths",
-        "Chemistry",
-        "AI",
-        "Comunication Skills"
+    # UPDATED SUBJECTS WITH RANDOM ATTENDANCE VALUES
+    attendance_data = [
+        ("Python", "88%"),
+        ("IEE", "76%"),
+        ("Maths", "92%"),
+        ("Chemistry", "81%"),
+        ("AI", "85%"),
+        ("Comunication Skills", "90%")
     ]
     
     # Table Headings
     tk.Label(table_frame, text="Subject Name", font=("Arial", 16, "bold"), bg="lightgray", width=30, borderwidth=1, relief="solid").grid(row=0, column=0)
     tk.Label(table_frame, text="Attendance Percentage", font=("Arial", 16, "bold"), bg="lightgray", width=30, borderwidth=1, relief="solid").grid(row=0, column=1)
     
-    # Display each subject and a '-' for attendance
-    for i, subject in enumerate(subjects):
+    # Display each subject and its attendance
+    for i, (subject, percentage) in enumerate(attendance_data):
         tk.Label(table_frame, text=subject, font=("Arial", 14), bg="white", width=30, borderwidth=1, relief="solid").grid(row=i+1, column=0)
-        tk.Label(table_frame, text="-", font=("Arial", 14), bg="white", width=30, borderwidth=1, relief="solid").grid(row=i+1, column=1)
+        tk.Label(table_frame, text=percentage, font=("Arial", 14), bg="white", width=30, borderwidth=1, relief="solid").grid(row=i+1, column=1)
     
     # Close button
     tk.Button(attendance_window, text="Back to Dashboard", font=("Arial", 12, "bold"), bg="blue", fg="white", 

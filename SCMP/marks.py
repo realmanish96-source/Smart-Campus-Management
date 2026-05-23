@@ -32,22 +32,22 @@ def show_marks():
     tk.Label(table_frame, text="Marks Obtained", font=("Arial", 14, "bold"), bg="lightgray", width=15, borderwidth=1, relief="solid").grid(row=0, column=2)
     tk.Label(table_frame, text="Grade", font=("Arial", 14, "bold"), bg="lightgray", width=10, borderwidth=1, relief="solid").grid(row=0, column=3)
     
-    # UPDATED SUBJECTS AND PLACEHOLDER MARKS
-    subjects = [
-        "Python",
-        "IEE",
-        "Maths",
-        "Chemistry",
-        "AI",
-        "Comunication Skills"
+    # UPDATED SUBJECTS WITH RANDOM MARKS OUT OF 50
+    marks_data = [
+        ("Python", 50, 45, "A+"),
+        ("IEE", 50, 38, "B+"),
+        ("Maths", 50, 48, "O"),
+        ("Chemistry", 50, 40, "A"),
+        ("AI", 50, 44, "A+"),
+        ("Comunication Skills", 50, 42, "A")
     ]
     
-    # Display each row with placeholders
-    for i, sub in enumerate(subjects):
+    # Display each row with marks out of 50
+    for i, (sub, total, obtained, grade) in enumerate(marks_data):
         tk.Label(table_frame, text=sub, font=("Arial", 12), bg="white", width=25, borderwidth=1, relief="solid").grid(row=i+1, column=0)
-        tk.Label(table_frame, text="-", font=("Arial", 12), bg="white", width=15, borderwidth=1, relief="solid").grid(row=i+1, column=1)
-        tk.Label(table_frame, text="-", font=("Arial", 12), bg="white", width=15, borderwidth=1, relief="solid").grid(row=i+1, column=2)
-        tk.Label(table_frame, text="-", font=("Arial", 12), bg="white", width=10, borderwidth=1, relief="solid").grid(row=i+1, column=3)
+        tk.Label(table_frame, text=total, font=("Arial", 12), bg="white", width=15, borderwidth=1, relief="solid").grid(row=i+1, column=1)
+        tk.Label(table_frame, text=obtained, font=("Arial", 12), bg="white", width=15, borderwidth=1, relief="solid").grid(row=i+1, column=2)
+        tk.Label(table_frame, text=grade, font=("Arial", 12), bg="white", width=10, borderwidth=1, relief="solid").grid(row=i+1, column=3)
     
     # Close button
     tk.Button(marks_window, text="Back to Dashboard", font=("Arial", 12, "bold"), bg="blue", fg="white", 

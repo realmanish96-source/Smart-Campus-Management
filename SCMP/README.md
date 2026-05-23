@@ -3,7 +3,7 @@
 A simple, beginner-level Desktop application built using Python and Tkinter for managing basic campus activities.
 
 ## Features
-- **Login System**: Secure login with hardcoded credentials (`student` / `1234`).
+- **Login System**: Secure login with hardcoded credentials (`manish123` / `050906`).
 - **Dashboard**: Simple navigation hub to access all modules.
 - **Notices**: View the latest campus announcements and updates.
 - **Attendance**: Check static attendance percentages for different subjects.
@@ -36,7 +36,8 @@ SCMP/
    python main.py
    ```
 
-## User Credenentials
-username: manish123 
-
-password: 050906
+## User Credentials
+- **Username**: manish123
+- **Password**: 050906
+- **Student Name**: Manish Jha
+- **Roll No**: 29
