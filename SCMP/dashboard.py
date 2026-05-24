@@ -1,11 +1,14 @@
 import tkinter as tk
-import search_sort_students
+import student_records
 import fee_calculation
+import file_manager
+import directory_scanner
 import performance_analytics
 import attendance
 import marks
 import notices
 import student_registration
+import help_support
 import sys
 import os
 from datetime import datetime
@@ -22,7 +25,6 @@ def logout(root):
     if os.path.exists("SCMP/session.txt"):
         os.remove("SCMP/session.txt")
     root.destroy()
-    # Now that we have a login screen, logout should go back to Login, not Registration
     import login
     login.show_login()
 
@@ -67,24 +69,27 @@ def show_dashboard():
     profile_card.pack(side=tk.RIGHT, padx=40)
     tk.Label(profile_card, text="ID: 29 | B.Tech CSE", font=("Arial", 12, "bold"), bg=COLOR_CARD, fg=COLOR_ACCENT).pack(side=tk.LEFT, padx=20)
     
-    # --- GRID CONTAINER (Student Features) ---
+    # --- GRID CONTAINER ---
     grid = tk.Frame(root, bg=COLOR_BG)
-    grid.pack(pady=10)
+    grid.pack(pady=20, expand=True)
     
-    # 6 Student Modules
     cards_config = [
         ("📊", "Attendance", "View Presence", attendance.show_attendance),
         ("📝", "Marks", "Check Grades", marks.show_marks),
         ("📋", "Notices", "Campus Updates", notices.show_notices),
-        ("💰", "Fees", "Billing System", fee_calculation.show_fee),
+        ("💰", "Fees", "Fees Update System", fee_calculation.show_fee),
         ("📈", "Analytics", "Performance Data", performance_analytics.show_analytics),
-        ("📩", "Help/Support", "Submit Feedback", None) # Placeholder
+        ("📩", "Help/Support", "Student Support Center", help_support.show_help)
     ]
     
     for i, (icon, title, desc, cmd) in enumerate(cards_config):
-        card = tk.Button(grid, bg=COLOR_CARD, width=35, height=8, relief="flat", bd=0, highlightthickness=1, highlightbackground="#ddd", command=cmd if cmd else lambda: None)
-        card.grid(row=i//4, column=i%4, padx=20, pady=15)
-        card.config(text=f"\n{icon}\n{title}\n{desc}", font=("Arial", 11), fg=COLOR_TEXT)
+        card = tk.Button(grid, bg=COLOR_CARD, width=40, height=9, relief="flat", bd=0, 
+                         highlightthickness=1, highlightbackground="#ddd", command=cmd if cmd else lambda: None)
+        card.grid(row=i//3, column=i%3, padx=20, pady=20)
+        
+        combined_text = f"\n{icon}\n\n{title.upper()}\n\n{desc}"
+        card.config(text=combined_text, font=("Arial", 11, "bold"), fg=COLOR_TEXT, justify="center")
+        
         card.bind("<Enter>", on_card_enter)
         card.bind("<Leave>", on_card_leave)
 
